@@ -35,51 +35,13 @@ A cryptographic hash (sometimes called ‘digest’) is a kind of ‘signature�
 
 The client can store the data (patient data) using front end technology (ex web app). Before sending the data to either the blockchain or third party system the data is encrypted locally using AES and SHA-256 is used to generate a key.
 
-![image 1](./images/1.png)
-Figure 1: Three major components of our application’s architecture to ensure privacy in blockchain
 
-# Working
 
-Three components take part in the encryption, hashing and storage process and they are  Client, Blockchain and the Third party system. 
 
-`3.1 To store the encrypted data in the blockchain we follow the steps given below`
 
-- The client first creates a key using the data as key-text for the SHA-256 cryptographic hashing function. Now the generated key is used to encrypt the data locally using the AES encryption algorithm. 
 
-- Now the encrypted data is sent to the Third Party System where the encrypted data is again encrypted using the steps followed in step-1 i.e the encrypted data is used as key-text for SHA-256 which generates a key and this generated key is used to encrypt the locally encrypted data. The key generated is stored in the database of the server with the id of the owner of the data. 
 
-- Now the encrypted data from the Third Party System is sent back to Client which sends this encrypted data from the Third Party System along with the locally generated key to the blockchain. The blockchain then writes this transaction in the block and stores the data in its database. Which means that every node connected to this blockchain network has this new encrypted data which is immutable. 
 
-`3.2 To fetch encrypted data from the blockchain  we follow the steps given below`
-
-- The encrypted data and the locally generated key stored in blockchain is fetched 
-
-- The encrypted data is then sent to Third Party System where it decrypts the data using the key stored in it’s database with user ID and we get the locally encrypted data but only if there is a permission by the owner of the data to share it with the owner of the request sent from the client. This decrypted data is then sent to the client. 
-
-- The decrypted data from the Third Party System is then decrypted to original data using the key fetched from the blockchain. And we get the original data to show it to the world.
-
-![image 2](./images/2.png)
-Figure 2: Figure showing transmission of data between the Client and the Third Party System
-
-# CONCLUSIONS
-
-We know that the data in blockchain is immutable i.e once the data is written in the blockchain it cannot be deleted and any body have access to the blockchain network can access the any data  present inside the blockchain which is a major issue with blockchain especially if we want to create a database in the blockchain which needs to be deleted once its work is over or if any user wants its data to be removed from the database or if you don't want to share your data with everyone or you want to share your data with the selected few. So in order to achieve a little privacy inside the blockchain we created this method where the original data is encrypted twice first locally and then in the Third party system. And when we send the data to the  blockchain the data is in encrypted form so it means that  if somebody tries to look inside the blockchain to steal the data for fault reasons it will be useless as the person will not be able to understand this data. In case if a user would one day wish its data to be deleted from the blockchain it can be apparently done by deleting all the keys associated with the data in order to decrypt the data. It means that the key of the encrypted data present in the Third Party System’s database associated with its respective owner will simply be deleted. Once the key is deleted the encrypted data is nothing more than random bits which are totally useless and cannot be utilized in any shape or form. This is how our method works to achieve privacy within blockchain.
-
-![image 2](./images/3.png)
-Figure 3: An image showing locally decrypted data retrieved from the blockchain in encrypted form.
-
-# ACKNOWLEDGEMENT
-
-This research was supported by Government Engineering College, Raipur and We are thankful to our guide Asst. Prof. Priyanka Sahu who provided expertise that greatly assisted the research.
-
-# REFERENCES
-
-- “Blockchain”  https://en.wikipedia.org/wiki/Blockchain
-- “Ethereum” https://ethereum.org/en/
-- “Smart Contracts”  https://ethereum.org/en/developers/docs/smart-contracts/
-- “SHA-256” https://en.wikipedia.org/wiki/SHA-2
-- “AES”  https://www.educative.io/edpresso/what-is-the-aes-algorithm
-- "How to Build Ethereum Dapp with React.js · Complete Step-By-Step Guide" https://www.dappuniversity.com/articles/ethereum-dapp-react-tutorial
 
 
 
